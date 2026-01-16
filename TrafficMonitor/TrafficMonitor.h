@@ -62,6 +62,9 @@ public:
     unsigned __int64 m_today_up_traffic{};  //今天已使用的上传流量
     unsigned __int64 m_today_down_traffic{};    //今天已使用的下载流量
 
+    double m_salary_earned{ 0.0 };          //今日已赚取的工资（元）
+    bool m_is_work_time{ false };           //当前是否在上班时间
+
     bool m_cannot_save_config_warning{ true };  //指示是否会在无法保存设置时弹出提示框
     bool m_cannot_save_global_config_warning{ true };   //指示是否会在无法保存设置时弹出提示框
 

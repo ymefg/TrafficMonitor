@@ -389,6 +389,15 @@ struct GeneralSettingData
     }
 
     StringSet connections_hide;     //用于保存哪些网络要从“选择网络连接”子菜单项中隐藏
+
+    //工资计算设置
+    bool salary_enable{ false };            //是否启用工资计算
+    double monthly_salary{ 10000.0 };       //月薪（元）
+    int work_start_hour{ 9 };               //上班时间（小时）
+    int work_start_minute{ 0 };             //上班时间（分钟）
+    int work_end_hour{ 18 };                //下班时间（小时）
+    int work_end_minute{ 0 };               //下班时间（分钟）
+    int work_days_per_month{ 22 };          //每月工作天数
 };
 
 //定义监控时间间隔有效的最大值和最小值

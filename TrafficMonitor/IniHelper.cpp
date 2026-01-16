@@ -127,6 +127,22 @@ bool CIniHelper::GetBool(const wchar_t * AppName, const wchar_t * KeyName, bool 
         return (_ttoi(rtn.c_str()) != 0);
 }
 
+void CIniHelper::WriteDouble(const wchar_t* AppName, const wchar_t* KeyName, double value)
+{
+    CString str;
+    str.Format(_T("%g"), value);
+    _WriteString(AppName, KeyName, wstring(str));
+}
+
+double CIniHelper::GetDouble(const wchar_t* AppName, const wchar_t* KeyName, double default_value) const
+{
+    CString default_str;
+    default_str.Format(_T("%g"), default_value);
+    wstring rtn{ default_str.GetString() };
+    _GetString(AppName, KeyName, rtn);
+    return _wtof(rtn.c_str());
+}
+
 void CIniHelper::WriteIntArray(const wchar_t * AppName, const wchar_t * KeyName, const int * values, int size)
 {
     CString str, tmp;

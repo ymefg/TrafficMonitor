@@ -91,6 +91,15 @@ void CTrafficMonitorApp::LoadConfig()
     ini.GetStringList(L"general", L"connections_hide", connections_hide, std::vector<std::wstring>{});
     m_general_data.connections_hide.FromVector(connections_hide);
 
+    //工资计算设置
+    m_general_data.salary_enable = ini.GetBool(L"salary", L"enable", false);
+    m_general_data.monthly_salary = ini.GetDouble(L"salary", L"monthly_salary", 10000.0);
+    m_general_data.work_start_hour = ini.GetInt(L"salary", L"work_start_hour", 9);
+    m_general_data.work_start_minute = ini.GetInt(L"salary", L"work_start_minute", 0);
+    m_general_data.work_end_hour = ini.GetInt(L"salary", L"work_end_hour", 18);
+    m_general_data.work_end_minute = ini.GetInt(L"salary", L"work_end_minute", 0);
+    m_general_data.work_days_per_month = ini.GetInt(L"salary", L"work_days_per_month", 22);
+
     //Windows10颜色模式设置
     bool is_windows10_light_theme = CWindowsSettingHelper::IsWindows10LightTheme();
     if (is_windows10_light_theme)
@@ -316,6 +325,15 @@ void CTrafficMonitorApp::SaveConfig()
     ini.WriteString(L"general", L"cpu_core_name", m_general_data.cpu_core_name);
     ini.WriteInt(L"general", L"hardware_monitor_item", m_general_data.hardware_monitor_item);
     ini.WriteStringList(L"general", L"connections_hide", m_general_data.connections_hide.ToVector());
+
+    //工资计算设置
+    ini.WriteBool(L"salary", L"enable", m_general_data.salary_enable);
+    ini.WriteDouble(L"salary", L"monthly_salary", m_general_data.monthly_salary);
+    ini.WriteInt(L"salary", L"work_start_hour", m_general_data.work_start_hour);
+    ini.WriteInt(L"salary", L"work_start_minute", m_general_data.work_start_minute);
+    ini.WriteInt(L"salary", L"work_end_hour", m_general_data.work_end_hour);
+    ini.WriteInt(L"salary", L"work_end_minute", m_general_data.work_end_minute);
+    ini.WriteInt(L"salary", L"work_days_per_month", m_general_data.work_days_per_month);
 
     //主窗口设置
     ini.WriteInt(L"config", L"transparency", m_cfg_data.m_transparency);

@@ -463,13 +463,23 @@
 #define ID_PLUGIN_COMMAND_MAX           33664
 #define ID_RESTORE_DEFAULT              33665
 
+// Salary Calculator Controls
+#define IDC_SALARY_ENABLE_CHECK         1220
+#define IDC_MONTHLY_SALARY_EDIT         1221
+#define IDC_WORK_START_HOUR_EDIT        1222
+#define IDC_WORK_START_MINUTE_EDIT      1223
+#define IDC_WORK_END_HOUR_EDIT          1224
+#define IDC_WORK_END_MINUTE_EDIT        1225
+#define IDC_WORK_DAYS_EDIT              1226
+#define IDC_SALARY_GROUP_STATIC         1227
+
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        349
 #define _APS_NEXT_COMMAND_VALUE         33666
-#define _APS_NEXT_CONTROL_VALUE         1220
+#define _APS_NEXT_CONTROL_VALUE         1228
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

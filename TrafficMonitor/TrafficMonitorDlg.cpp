@@ -1494,6 +1494,54 @@ void CTrafficMonitorDlg::DoMonitorAcquisition()
         }
     }
 
+    //计算今日已赚工资
+    if (theApp.m_general_data.salary_enable)
+    {
+        SYSTEMTIME current_time;
+        GetLocalTime(&current_time);
+
+        //计算当前时间（分钟为单位）
+        int current_time_minutes = current_time.wHour * 60 + current_time.wMinute;
+        int work_start_minutes = theApp.m_general_data.work_start_hour * 60 + theApp.m_general_data.work_start_minute;
+        int work_end_minutes = theApp.m_general_data.work_end_hour * 60 + theApp.m_general_data.work_end_minute;
+
+        //判断是否在上班时间内
+        theApp.m_is_work_time = (current_time_minutes >= work_start_minutes && current_time_minutes < work_end_minutes);
+
+        if (theApp.m_is_work_time)
+        {
+            //计算每分钟收入 = 月薪 / 工作天数 / 每天工作分钟数
+            double work_minutes_per_day = (double)(work_end_minutes - work_start_minutes);
+            double salary_per_minute = theApp.m_general_data.monthly_salary / theApp.m_general_data.work_days_per_month / work_minutes_per_day;
+
+            //计算今日已工作的分钟数
+            int worked_minutes = current_time_minutes - work_start_minutes;
+
+            //加上秒数的精确计算
+            double worked_time = worked_minutes + current_time.wSecond / 60.0;
+
+            //计算已赚取的工资
+            theApp.m_salary_earned = worked_time * salary_per_minute;
+        }
+        else if (current_time_minutes >= work_end_minutes)
+        {
+            //下班后，显示当天的全部工资
+            int work_minutes_per_day = work_end_minutes - work_start_minutes;
+            double salary_per_minute = theApp.m_general_data.monthly_salary / theApp.m_general_data.work_days_per_month / work_minutes_per_day;
+            theApp.m_salary_earned = work_minutes_per_day * salary_per_minute;
+        }
+        else
+        {
+            //上班前，显示0
+            theApp.m_salary_earned = 0.0;
+        }
+    }
+    else
+    {
+        theApp.m_salary_earned = 0.0;
+        theApp.m_is_work_time = false;
+    }
+
     m_monitor_time_cnt++;
 
     //发送监控信息更新消息
