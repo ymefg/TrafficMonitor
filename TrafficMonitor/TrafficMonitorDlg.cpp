@@ -1510,8 +1510,7 @@ void CTrafficMonitorDlg::DoMonitorAcquisition()
 
         if (theApp.m_is_work_time)
         {
-            //计算每分钟收入 = 月薪 / 工作天数 / 每天工作小时数 / 60
-            int work_hours_per_day = (work_end_minutes - work_start_minutes) / 60;
+            //计算每分钟收入 = 月薪 / 工作天数 / 每天工作分钟数
             double work_minutes_per_day = (double)(work_end_minutes - work_start_minutes);
             double salary_per_minute = theApp.m_general_data.monthly_salary / theApp.m_general_data.work_days_per_month / work_minutes_per_day;
 
