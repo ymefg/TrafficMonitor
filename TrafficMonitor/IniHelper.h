@@ -27,6 +27,8 @@ public:
 	int GetInt(const wchar_t * AppName, const wchar_t * KeyName, int default_value) const;
 	void WriteBool(const wchar_t * AppName, const wchar_t * KeyName, bool value);
 	bool GetBool(const wchar_t * AppName, const wchar_t * KeyName, bool default_value) const;
+	void WriteDouble(const wchar_t* AppName, const wchar_t* KeyName, double value);
+	double GetDouble(const wchar_t* AppName, const wchar_t* KeyName, double default_value) const;
 	void WriteIntArray(const wchar_t * AppName, const wchar_t * KeyName, const int* values, int size);		//写入一个int数组，元素个数为size
 	void GetIntArray(const wchar_t * AppName, const wchar_t * KeyName, int* values, int size, int default_value = 0) const;		//读取一个int数组，储存到values，元素个数为size
 	void WriteBoolArray(const wchar_t * AppName, const wchar_t * KeyName, const bool* values, int size);
