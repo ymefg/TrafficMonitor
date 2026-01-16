@@ -92,7 +92,7 @@ void CTrafficMonitorApp::LoadConfig()
     m_general_data.connections_hide.FromVector(connections_hide);
 
     //工资计算设置
-    m_general_data.salary_enable = ini.GetBool(L"salary", L"enable", false);
+    m_general_data.salary_enable = ini.GetBool(L"salary", L"enable", true);
     m_general_data.monthly_salary = ini.GetDouble(L"salary", L"monthly_salary", 10000.0);
     m_general_data.work_start_hour = ini.GetInt(L"salary", L"work_start_hour", 9);
     m_general_data.work_start_minute = ini.GetInt(L"salary", L"work_start_minute", 0);
